@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package meu_servico;
+service MeuServico {
+  rpc MeuMetodo (MinhaRequisicao) returns (MinhaResposta);
+  rpc MetodoOrdemServico (OrdemServicoRequisicao) returns (OrdemServicoList);
+  rpc getImage (Imagem) returns (Resposta);
+  
+}
+
+message Resposta{
+  string resposta = 1;
+}
+
+message Imagem{
+  bytes image = 1;
+}
+
+message MinhaRequisicao {
+  string campo1 = 1;
+  int32 campo2 = 2;
+}
+
+message MinhaResposta {
+  string resultado = 1;
+}
+
+
+message OrdemServicoRequisicao {
+  int32 id = 1;
+  string nome = 2;
+  string local = 3;
+}
+
+message OrdemServicoList{
+  //define que Products sera uma list de ProductServiceResponse
+  repeated OrdemServico ordemServicoList = 1;
+}
+
+message OrdemServico {
+  int32 id = 1;
+  string title = 2;
+  string geojson = 3;
+  double lat = 4;
+  double lng = 5;
+  string relator = 6;
+  string date = 7;
+  bool status = 8;
+}
+
+
+
+
+//para compilar o arquivo proto usar no python3 -m grpc_tools.protoc -I . --python_out=. --grpc_python_out=. meu_servico.proto

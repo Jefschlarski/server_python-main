@@ -1,0 +1,8 @@
+grpcio
+grpcio-tools
+psycopg2
+sqlalchemy
+protobuf==3.20
+face_recognition
+opencv-contrib-python 
+mediapipe
